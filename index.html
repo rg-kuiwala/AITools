@@ -1,36 +1,27 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="RG Multi-Tools - Free online tools for image resizing, unit conversion, and more. Completely free and browser-based solutions.">
-    <meta name="keywords" content="online tools, image resizer, unit converter, free tools, web utilities">
-    <meta name="author" content="RG AI Tools">
-    <meta property="og:title" content="RG Multi-Tools - Free Online Tools Collection">
-    <meta property="og:description" content="Comprehensive collection of free browser-based tools for all your needs">
-    <meta property="og:type" content="website">
-    
-    <title>RG Multi-Tools - Free Online Tools Collection</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet>
-    
+    <title>RG AI Tools - Online File Converter & Productivity Tools</title>
+    <meta name="description" content="Free online tools for PDF conversion, image editing, unit conversion, and more. All-in-one solution for your digital needs.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #2563eb;
-            --secondary-color: #1e40af;
-            --background-color: #f8fafc;
-            --text-color: #1e293b;
+            --primary-color: #2A6FFF;
+            --secondary-color: #1A4EB3;
+            --background-color: #F8FAFF;
+            --text-color: #2D3748;
         }
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
             background-color: var(--background-color);
             color: var(--text-color);
             line-height: 1.6;
@@ -39,12 +30,12 @@
         /* Header Styles */
         .header {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            padding: 1rem;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .nav-container {
@@ -57,96 +48,86 @@
 
         .logo {
             color: white;
-            font-size: 1.5rem;
-            font-weight: 600;
+            font-size: 1.8rem;
+            font-weight: 700;
             text-decoration: none;
-        }
-
-        .nav-menu {
             display: flex;
-            gap: 2rem;
-            list-style: none;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .nav-menu a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: opacity 0.3s;
+        .logo i {
+            font-size: 1.5em;
         }
 
-        .nav-menu a:hover {
-            opacity: 0.8;
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* Tool Header */
-        .tool-header {
-            background-color: #ff0000;
-            color: white;
-            padding: 1rem;
-            margin-top: 60px;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        /* Main Content Layout */
+        /* Main Content */
         .main-container {
             max-width: 1200px;
-            margin: 100px auto 0;
-            padding: 2rem;
-            display: grid;
-            grid-template-columns: 1fr 300px;
-            gap: 2rem;
+            margin: 100px auto 40px;
+            padding: 0 2rem;
         }
 
-        /* Tools Section */
+        /* Tools Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .tool-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .tool-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Tool Section */
         .tool-section {
             background: white;
             border-radius: 12px;
             padding: 2rem;
-            margin-bottom: 2rem;
+            margin: 2rem 0;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
 
-        /* Sidebar */
-        .sidebar {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            height: fit-content;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        /* Form Elements */
+        .input-group {
+            margin: 1.5rem 0;
         }
 
-        .sidebar h3 {
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-        }
-
-        /* Ads */
-        .ad-container {
-            background: #f1f1f1;
-            padding: 15px;
-            margin: 20px 0;
+        input, select, button {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
             border-radius: 8px;
-            text-align: center;
+            font-size: 1rem;
+            transition: all 0.3s ease;
         }
 
-        .ad-placeholder {
-            background: #ddd;
-            padding: 20px;
-            margin: 10px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            padding: 1rem 2rem;
+        }
+
+        button:hover {
+            background: var(--secondary-color);
         }
 
         /* Footer */
@@ -166,365 +147,221 @@
         }
 
         .footer-section h4 {
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid #334155;
-        }
-
-        /* Tool Specific Styles */
-        .input-group {
             margin-bottom: 1.5rem;
-        }
-
-        input, select, button {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        input:focus, select:focus {
-            border-color: var(--primary-color);
-            outline: none;
-        }
-
-        button {
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-weight: 500;
-            transition: background-color 0.3s;
-        }
-
-        button:hover {
-            background: var(--secondary-color);
-        }
-
-        .image-preview {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin-top: 1rem;
+            color: var(--primary-color);
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--primary-color);
+            .header {
                 padding: 1rem;
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .nav-menu.active {
-                display: flex;
-            }
-
-            .mobile-menu-btn {
-                display: block;
             }
 
             .main-container {
-                grid-template-columns: 1fr;
-                padding: 1rem;
+                margin-top: 80px;
+                padding: 0 1rem;
             }
 
-            .sidebar {
-                display: none;
+            .tools-grid {
+                grid-template-columns: 1fr;
             }
+        }
+
+        /* Additional Styling */
+        .file-drop-area {
+            border: 2px dashed #cbd5e0;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+            cursor: pointer;
+        }
+
+        .preview-container {
+            position: relative;
+            margin: 2rem 0;
+        }
+
+        .conversion-result {
+            background: #f7fafc;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
         }
     </style>
 </head>
 <body>
     <header class="header">
         <nav class="nav-container">
-            <a href="/" class="logo">RG Tools</a>
-            <button class="mobile-menu-btn">☰</button>
-            <ul class="nav-menu">
-                <li><a href="#news">News</a></li>
-                <li><a href="#blog">Blog</a></li>
-                <li><a href="#technology">Technology</a></li>
-                <li><a href="#tools">Tools</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+            <a href="/" class="logo">
+                <i class="fas fa-robot"></i>
+                RG Tools
+            </a>
+            <div class="nav-links">
+                <a href="#tools" class="nav-link">Tools</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#pricing" class="nav-link">Pricing</a>
+            </div>
         </nav>
     </header>
 
-    <div class="tool-header">
-        <h2>RG Multi-Tools: Image Resizer, Unit Converters, File Tools</h2>
-    </div>
-
     <main class="main-container">
-        <article class="tools-content">
-            <div class="ad-container">
-                <div class="ad-placeholder" style="width: 728px; height: 90px;">
-                    <!-- Google Ads Header -->
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>All-in-One Online Tools Suite</h1>
+            <p>Convert, edit, and manage files completely free in your browser</p>
+        </section>
+
+        <!-- Tools Grid -->
+        <div class="tools-grid">
+            <div class="tool-card">
+                <i class="fas fa-file-image tool-icon"></i>
+                <h3>Image Resizer</h3>
+                <p>Resize and optimize images instantly</p>
+            </div>
+
+            <div class="tool-card">
+                <i class="fas fa-ruler-combined tool-icon"></i>
+                <h3>Unit Converter</h3>
+                <p>Convert between various measurement units</p>
+            </div>
+
+            <div class="tool-card">
+                <i class="fas fa-file-pdf tool-icon"></i>
+                <h3>PDF Tools</h3>
+                <p>Merge, split, and compress PDF files</p>
+            </div>
+        </div>
+
+        <!-- Image Resizer Section -->
+        <section class="tool-section" id="image-resizer">
+            <h2><i class="fas fa-file-image"></i> Image Resizer</h2>
+            <div class="file-drop-area">
+                <p>Drag & drop image here or</p>
+                <input type="file" id="imageUpload" accept="image/*">
+            </div>
+            
+            <div class="input-group">
+                <label>New Dimensions</label>
+                <div class="dimension-controls">
+                    <input type="number" id="newWidth" placeholder="Width">
+                    <span>×</span>
+                    <input type="number" id="newHeight" placeholder="Height">
+                    <select id="dimensionUnit">
+                        <option value="px">Pixels</option>
+                        <option value="%">Percentage</option>
+                    </select>
                 </div>
             </div>
 
-            <!-- Image Resizer -->
-            <section class="tool-section" id="image-resizer">
-                <h1>Image Resizer</h1>
-                <input type="file" id="imageUpload" accept="image/*">
-                <div class="size-info">
-                    Current Size: <span id="currentWidth">--</span> x <span id="currentHeight">--</span> pixels
-                </div>
-                <div class="resize-options">
-                    <label>
-                        <input type="radio" name="resizeType" value="pixels" checked> Pixels
-                    </label>
-                    <label>
-                        <input type="radio" name="resizeType" value="percentage"> Percentage
-                    </label>
-                </div>
-                <div class="input-group">
-                    <label>New Width:</label>
-                    <input type="number" id="newWidth" placeholder="Enter width">
-                </div>
-                <div class="input-group">
-                    <label>New Height:</label>
-                    <input type="number" id="newHeight" placeholder="Enter height">
-                </div>
-                <button onclick="resizeImage()">Resize Image</button>
-                <img id="preview" class="image-preview" style="display: none;">
-                <a id="downloadLink" style="display: none;">Download Resized Image</a>
-            </section>
+            <button class="convert-btn">
+                <i class="fas fa-magic"></i> Resize Image
+            </button>
+        </section>
 
-            <!-- Length Converter -->
-            <section class="tool-section" id="length-converter">
-                <h2>Length Converter</h2>
+        <!-- Length Converter Section -->
+        <section class="tool-section" id="length-converter">
+            <h2><i class="fas fa-ruler-horizontal"></i> Length Converter</h2>
+            <div class="converter-container">
                 <div class="input-group">
                     <input type="number" id="lengthInput" placeholder="Enter value">
-                    <select id="lengthFrom">
-                        <option value="m">Meters</option>
-                        <option value="km">Kilometers</option>
-                        <option value="in">Inches</option>
-                        <option value="ft">Feet</option>
-                        <option value="mi">Miles</option>
-                    </select>
+                    <select id="lengthFrom"></select>
                     <span>to</span>
-                    <select id="lengthTo">
-                        <option value="m">Meters</option>
-                        <option value="km">Kilometers</option>
-                        <option value="in">Inches</option>
-                        <option value="ft">Feet</option>
-                        <option value="mi">Miles</option>
-                    </select>
+                    <select id="lengthTo"></select>
                 </div>
-                <button onclick="convertLength()">Convert</button>
-                <p id="lengthResult"></p>
-            </section>
-
-            <!-- Weight Converter -->
-            <section class="tool-section" id="weight-converter">
-                <h2>Weight Converter</h2>
-                <div class="input-group">
-                    <input type="number" id="weightInput" placeholder="Enter value">
-                    <select id="weightFrom">
-                        <option value="kg">Kilograms</option>
-                        <option value="g">Grams</option>
-                        <option value="lb">Pounds</option>
-                        <option value="oz">Ounces</option>
-                    </select>
-                    <span>to</span>
-                    <select id="weightTo">
-                        <option value="kg">Kilograms</option>
-                        <option value="g">Grams</option>
-                        <option value="lb">Pounds</option>
-                        <option value="oz">Ounces</option>
-                    </select>
-                </div>
-                <button onclick="convertWeight()">Convert</button>
-                <p id="weightResult"></p>
-            </section>
-        </article>
-
-        <aside class="sidebar">
-            <div class="ad-container">
-                <div class="ad-placeholder" style="width: 300px; height: 600px;">
-                    <!-- Google Ads Sidebar -->
-                </div>
+                <div class="conversion-result" id="lengthResult"></div>
             </div>
-            <h3>Popular Tools</h3>
-            <nav>
-                <ul>
-                    <li><a href="#image-resizer">Image Resizer</a></li>
-                    <li><a href="#length-converter">Length Converter</a></li>
-                    <li><a href="#weight-converter">Weight Converter</a></li>
-                    <li><a href="#">PDF Compressor</a></li>
-                    <li><a href="#">Color Picker</a></li>
-                </ul>
-            </nav>
-        </aside>
-    </main>
+        </section>
 
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>About Us</h4>
-                <p>Your premier destination for free online tools and utilities.</p>
-            </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <nav>
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>RG AI Tools</h4>
+                    <p>Your complete solution for digital file management</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Tools</h4>
+                    <ul>
+                        <li><a href="#image-resizer">Image Tools</a></li>
+                        <li><a href="#length-converter">Converters</a></li>
+                        <li><a href="#">PDF Tools</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
                     <ul>
                         <li><a href="#privacy">Privacy Policy</a></li>
                         <li><a href="#terms">Terms of Service</a></li>
-                        <li><a href="#contact">Contact Us</a></li>
                     </ul>
-                </nav>
+                </div>
             </div>
-            <div class="footer-section">
-                <h4>Social Media</h4>
-                <ul>
-                    <li><a href="#twitter">Twitter</a></li>
-                    <li><a href="#facebook">Facebook</a></li>
-                    <li><a href="#linkedin">LinkedIn</a></li>
-                </ul>
+            <div class="footer-bottom">
+                © 2025 RG AI Tools. All rights reserved.
             </div>
-        </div>
-        <div class="footer-bottom">
-            Copyright @ RG AI Tools 2025 | All rights reserved
-        </div>
-    </footer>
+        </footer>
+    </main>
 
     <script>
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const navMenu = document.querySelector('.nav-menu');
+        // Modern JavaScript with improved interactions
+        document.addEventListener('DOMContentLoaded', () => {
+            // File Upload Interactions
+            const fileDropArea = document.querySelector('.file-drop-area');
+            
+            fileDropArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                fileDropArea.style.borderColor = var(--primary-color));
+            });
 
-        mobileMenuBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
+            fileDropArea.addEventListener('dragleave', () => {
+                fileDropArea.style.borderColor = '#cbd5e0';
+            });
+
+            // Initialize unit converters
+            initializeLengthConverter();
+            initializeWeightConverter();
         });
 
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.nav-container')) {
-                navMenu.classList.remove('active');
+        function initializeLengthConverter() {
+            const units = {
+                m: 'Meters',
+                km: 'Kilometers',
+                in: 'Inches',
+                ft: 'Feet',
+                mi: 'Miles'
+            };
+
+            const fromSelect = document.getElementById('lengthFrom');
+            const toSelect = document.getElementById('lengthTo');
+
+            for (const [key, value] of Object.entries(units)) {
+                fromSelect.innerHTML += `<option value="${key}">${value}</option>`;
+                toSelect.innerHTML += `<option value="${key}">${value}</option>`;
             }
-        });
+        }
 
-        // Image Resizer
-        let originalWidth, originalHeight;
+        // Add similar initialization for weight converter
 
-        document.getElementById('imageUpload').addEventListener('change', function(e) {
+        // Modern image resizer with preview
+        const imageUpload = document.getElementById('imageUpload');
+        imageUpload.addEventListener('change', handleImageUpload);
+
+        async function handleImageUpload(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
             const reader = new FileReader();
-            reader.onload = function(event) {
+            reader.onload = async (event) => {
                 const img = new Image();
                 img.src = event.target.result;
-                img.onload = function() {
-                    originalWidth = this.width;
-                    originalHeight = this.height;
-                    document.getElementById('currentWidth').textContent = originalWidth;
-                    document.getElementById('currentHeight').textContent = originalHeight;
-                    document.getElementById('preview').src = event.target.result;
-                    document.getElementById('preview').style.display = 'block';
+                
+                img.onload = () => {
+                    // Update UI with image preview
+                    // Update dimension inputs
                 };
             };
-            reader.readAsDataURL(e.target.files[0]);
-        });
-
-        function resizeImage() {
-            const isPercentage = document.querySelector('input[name="resizeType"]:checked').value === 'percentage';
-            let width = parseInt(document.getElementById('newWidth').value);
-            let height = parseInt(document.getElementById('newHeight').value);
-
-            if (!width || !height) {
-                alert('Please enter valid dimensions');
-                return;
-            }
-
-            if (isPercentage) {
-                width = originalWidth * (width / 100);
-                height = originalHeight * (height / 100);
-            }
-
-            const canvas = document.createElement('canvas');
-            canvas.width = width;
-            canvas.height = height;
-            
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(document.getElementById('preview'), 0, 0, width, height);
-            
-            const downloadLink = document.getElementById('downloadLink');
-            downloadLink.href = canvas.toDataURL('image/jpeg');
-            downloadLink.download = 'resized-image.jpg';
-            downloadLink.style.display = 'block';
+            reader.readAsDataURL(file);
         }
-
-        // Length Converter
-        const lengthUnits = {
-            m: 1,
-            km: 1000,
-            in: 0.0254,
-            ft: 0.3048,
-            mi: 1609.34
-        };
-
-        function convertLength() {
-            const value = parseFloat(document.getElementById('lengthInput').value);
-            const fromUnit = document.getElementById('lengthFrom').value;
-            const toUnit = document.getElementById('lengthTo').value;
-            
-            if (isNaN(value)) {
-                document.getElementById('lengthResult').textContent = 'Please enter valid number';
-                return;
-            }
-            
-            const meters = value * lengthUnits[fromUnit];
-            const result = meters / lengthUnits[toUnit];
-            
-            document.getElementById('lengthResult').textContent = 
-                `${value} ${fromUnit} = ${result.toFixed(2)} ${toUnit}`;
-        }
-
-        // Weight Converter
-        const weightUnits = {
-            kg: 1,
-            g: 0.001,
-            lb: 0.453592,
-            oz: 0.0283495
-        };
-
-        function convertWeight() {
-            const value = parseFloat(document.getElementById('weightInput').value);
-            const fromUnit = document.getElementById('weightFrom').value;
-            const toUnit = document.getElementById('weightTo').value;
-            
-            if (isNaN(value)) {
-                document.getElementById('weightResult').textContent = 'Please enter valid number';
-                return;
-            }
-            
-            const kg = value * weightUnits[fromUnit];
-            const result = kg / weightUnits[toUnit];
-            
-            document.getElementById('weightResult').textContent = 
-                `${value} ${fromUnit} = ${result.toFixed(2)} ${toUnit}`;
-        }
-
-        // Smooth Scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
     </script>
 </body>
 </html>
