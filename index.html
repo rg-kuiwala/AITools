@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Tool Website</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .nav-button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .nav-button.active {
+            background-color: #45a049;
+        }
+
+        .tool-section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            display: none;
+        }
+
+        .tool-section.active {
+            display: block;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        input, select, button {
+            padding: 8px;
+            margin: 5px 0;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .image-preview {
+            max-width: 300px;
+            margin: 10px 0;
+        }
+
+        #downloadLink {
+            display: block;
+            margin-top: 10px;
+            color: #4CAF50;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <button class="nav-button active" onclick="showTool('image-resizer')">Image Resizer</button>
+        <button class="nav-button" onclick="showTool('length-converter')">Length Converter</button>
+        <button class="nav-button" onclick="showTool('weight-converter')">Weight Converter</button>
+    </nav>
+
+    <!-- Image Resizer -->
+    <div id="image-resizer" class="tool-section active">
+        <h2>Image Resizer</h2>
+        <input type="file" id="imageUpload" accept="image/*">
+        <div class="input-group">
+            <label>Width (px):</label>
+            <input type="number" id="newWidth" placeholder="Enter width">
+        </div>
+        <div class="input-group">
+            <label>Height (px):</label>
+            <input type="number" id="newHeight" placeholder="Enter height">
+        </div>
+        <button onclick="resizeImage()">Resize Image</button>
+        <img id="preview" class="image-preview">
+        <a id="downloadLink" style="display: none;">Download Resized Image</a>
+    </div>
+
+    <!-- Length Converter -->
+    <div id="length-converter" class="tool-section">
+        <h2>Length Converter</h2>
+        <div class="input-group">
+            <input type="number" id="lengthInput" placeholder="Enter value">
+            <select id="lengthFrom">
+                <option value="m">Meters</option>
+                <option value="km">Kilometers</option>
+                <option value="in">Inches</option>
+                <option value="ft">Feet</option>
+                <option value="mi">Miles</option>
+            </select>
+            <span>to</span>
+            <select id="lengthTo">
+                <option value="m">Meters</option>
+                <option value="km">Kilometers</option>
+                <option value="in">Inches</option>
+                <option value="ft">Feet</option>
+                <option value="mi">Miles</option>
+            </select>
+        </div>
+        <button onclick="convertLength()">Convert</button>
+        <p id="lengthResult"></p>
+    </div>
+
+    <!-- Weight Converter -->
+    <div id="weight-converter" class="tool-section">
+        <h2>Weight Converter</h2>
+        <div class="input-group">
+            <input type="number" id="weightInput" placeholder="Enter value">
+            <select id="weightFrom">
+                <option value="kg">Kilograms</option>
+                <option value="g">Grams</option>
+                <option value="lb">Pounds</option>
+                <option value="oz">Ounces</option>
+            </select>
+            <span>to</span>
+            <select id="weightTo">
+                <option value="kg">Kilograms</option>
+                <option value="g">Grams</option>
+                <option value="lb">Pounds</option>
+                <option value="oz">Ounces</option>
+            </select>
+        </div>
+        <button onclick="convertWeight()">Convert</button>
+        <p id="weightResult"></p>
+    </div>
+
+    <script>
+        // Tool Navigation
+        function showTool(toolId) {
+            document.querySelectorAll('.tool-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            document.getElementById(toolId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Image Resizer
+        let uploadedImage;
+
+        document.getElementById('imageUpload').addEventListener('change', function(e) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                uploadedImage = new Image();
+                uploadedImage.src = event.target.result;
+                uploadedImage.onload = function() {
+                    document.getElementById('preview').src = event.target.result;
+                    document.getElementById('newWidth').value = this.width;
+                    document.getElementById('newHeight').value = this.height;
+                };
+            };
+            reader.readAsDataURL(e.target.files[0]);
+        });
+
+        function resizeImage() {
+            const width = parseInt(document.getElementById('newWidth').value);
+            const height = parseInt(document.getElementById('newHeight').value);
+            
+            const canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+            
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(uploadedImage, 0, 0, width, height);
+            
+            const downloadLink = document.getElementById('downloadLink');
+            downloadLink.href = canvas.toDataURL('image/jpeg');
+            downloadLink.download = 'resized-image.jpg';
+            downloadLink.style.display = 'block';
+        }
+
+        // Length Converter
+        const lengthUnits = {
+            m: 1,
+            km: 1000,
+            in: 0.0254,
+            ft: 0.3048,
+            mi: 1609.34
+        };
+
+        function convertLength() {
+            const value = parseFloat(document.getElementById('lengthInput').value);
+            const fromUnit = document.getElementById('lengthFrom').value;
+            const toUnit = document.getElementById('lengthTo').value;
+            
+            const meters = value * lengthUnits[fromUnit];
+            const result = meters / lengthUnits[toUnit];
+            
+            document.getElementById('lengthResult').textContent = 
+                `${value} ${fromUnit} = ${result.toFixed(2)} ${toUnit}`;
+        }
+
+        // Weight Converter
+        const weightUnits = {
+            kg: 1,
+            g: 0.001,
+            lb: 0.453592,
+            oz: 0.0283495
+        };
+
+        function convertWeight() {
+            const value = parseFloat(document.getElementById('weightInput').value);
+            const fromUnit = document.getElementById('weightFrom').value;
+            const toUnit = document.getElementById('weightTo').value;
+            
+            const kg = value * weightUnits[fromUnit];
+            const result = kg / weightUnits[toUnit];
+            
+            document.getElementById('weightResult').textContent = 
+                `${value} ${fromUnit} = ${result.toFixed(2)} ${toUnit}`;
+        }
+    </script>
+</body>
+</html>
