@@ -13,7 +13,7 @@
     <title>RG Multi-Tools - Free Online Tools Collection</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet>
     
     <style>
         :root {
@@ -88,10 +88,20 @@
             cursor: pointer;
         }
 
+        /* Tool Header */
+        .tool-header {
+            background-color: #ff0000;
+            color: white;
+            padding: 1rem;
+            margin-top: 60px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
         /* Main Content Layout */
         .main-container {
             max-width: 1200px;
-            margin: 80px auto 0;
+            margin: 100px auto 0;
             padding: 2rem;
             display: grid;
             grid-template-columns: 1fr 300px;
@@ -121,6 +131,24 @@
             margin-bottom: 1.5rem;
         }
 
+        /* Ads */
+        .ad-container {
+            background: #f1f1f1;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .ad-placeholder {
+            background: #ddd;
+            padding: 20px;
+            margin: 10px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
         /* Footer */
         .footer {
             background: var(--text-color);
@@ -147,38 +175,6 @@
             margin-top: 2rem;
             padding-top: 2rem;
             border-top: 1px solid #334155;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--primary-color);
-                padding: 1rem;
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .nav-menu.active {
-                display: flex;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .main-container {
-                grid-template-columns: 1fr;
-                padding: 1rem;
-            }
-
-            .sidebar {
-                display: none;
-            }
         }
 
         /* Tool Specific Styles */
@@ -219,6 +215,38 @@
             border-radius: 8px;
             margin-top: 1rem;
         }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--primary-color);
+                padding: 1rem;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .main-container {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+
+            .sidebar {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -236,28 +264,101 @@
         </nav>
     </header>
 
+    <div class="tool-header">
+        <h2>RG Multi-Tools: Image Resizer, Unit Converters, File Tools</h2>
+    </div>
+
     <main class="main-container">
         <article class="tools-content">
-            <!-- Image Resizer Section -->
+            <div class="ad-container">
+                <div class="ad-placeholder" style="width: 728px; height: 90px;">
+                    <!-- Google Ads Header -->
+                </div>
+            </div>
+
+            <!-- Image Resizer -->
             <section class="tool-section" id="image-resizer">
-                <h1>Image Resizer Tool</h1>
-                <!-- Existing image resizer content -->
+                <h1>Image Resizer</h1>
+                <input type="file" id="imageUpload" accept="image/*">
+                <div class="size-info">
+                    Current Size: <span id="currentWidth">--</span> x <span id="currentHeight">--</span> pixels
+                </div>
+                <div class="resize-options">
+                    <label>
+                        <input type="radio" name="resizeType" value="pixels" checked> Pixels
+                    </label>
+                    <label>
+                        <input type="radio" name="resizeType" value="percentage"> Percentage
+                    </label>
+                </div>
+                <div class="input-group">
+                    <label>New Width:</label>
+                    <input type="number" id="newWidth" placeholder="Enter width">
+                </div>
+                <div class="input-group">
+                    <label>New Height:</label>
+                    <input type="number" id="newHeight" placeholder="Enter height">
+                </div>
+                <button onclick="resizeImage()">Resize Image</button>
+                <img id="preview" class="image-preview" style="display: none;">
+                <a id="downloadLink" style="display: none;">Download Resized Image</a>
             </section>
 
-            <!-- Length Converter Section -->
+            <!-- Length Converter -->
             <section class="tool-section" id="length-converter">
                 <h2>Length Converter</h2>
-                <!-- Existing converter content -->
+                <div class="input-group">
+                    <input type="number" id="lengthInput" placeholder="Enter value">
+                    <select id="lengthFrom">
+                        <option value="m">Meters</option>
+                        <option value="km">Kilometers</option>
+                        <option value="in">Inches</option>
+                        <option value="ft">Feet</option>
+                        <option value="mi">Miles</option>
+                    </select>
+                    <span>to</span>
+                    <select id="lengthTo">
+                        <option value="m">Meters</option>
+                        <option value="km">Kilometers</option>
+                        <option value="in">Inches</option>
+                        <option value="ft">Feet</option>
+                        <option value="mi">Miles</option>
+                    </select>
+                </div>
+                <button onclick="convertLength()">Convert</button>
+                <p id="lengthResult"></p>
             </section>
 
-            <!-- Weight Converter Section -->
+            <!-- Weight Converter -->
             <section class="tool-section" id="weight-converter">
                 <h2>Weight Converter</h2>
-                <!-- Existing converter content -->
+                <div class="input-group">
+                    <input type="number" id="weightInput" placeholder="Enter value">
+                    <select id="weightFrom">
+                        <option value="kg">Kilograms</option>
+                        <option value="g">Grams</option>
+                        <option value="lb">Pounds</option>
+                        <option value="oz">Ounces</option>
+                    </select>
+                    <span>to</span>
+                    <select id="weightTo">
+                        <option value="kg">Kilograms</option>
+                        <option value="g">Grams</option>
+                        <option value="lb">Pounds</option>
+                        <option value="oz">Ounces</option>
+                    </select>
+                </div>
+                <button onclick="convertWeight()">Convert</button>
+                <p id="weightResult"></p>
             </section>
         </article>
 
         <aside class="sidebar">
+            <div class="ad-container">
+                <div class="ad-placeholder" style="width: 300px; height: 600px;">
+                    <!-- Google Ads Sidebar -->
+                </div>
+            </div>
             <h3>Popular Tools</h3>
             <nav>
                 <ul>
@@ -310,14 +411,112 @@
             navMenu.classList.toggle('active');
         });
 
-        // Close menu on click outside
         document.addEventListener('click', (e) => {
             if (!e.target.closest('.nav-container')) {
                 navMenu.classList.remove('active');
             }
         });
 
-        // Smooth scroll for anchor links
+        // Image Resizer
+        let originalWidth, originalHeight;
+
+        document.getElementById('imageUpload').addEventListener('change', function(e) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const img = new Image();
+                img.src = event.target.result;
+                img.onload = function() {
+                    originalWidth = this.width;
+                    originalHeight = this.height;
+                    document.getElementById('currentWidth').textContent = originalWidth;
+                    document.getElementById('currentHeight').textContent = originalHeight;
+                    document.getElementById('preview').src = event.target.result;
+                    document.getElementById('preview').style.display = 'block';
+                };
+            };
+            reader.readAsDataURL(e.target.files[0]);
+        });
+
+        function resizeImage() {
+            const isPercentage = document.querySelector('input[name="resizeType"]:checked').value === 'percentage';
+            let width = parseInt(document.getElementById('newWidth').value);
+            let height = parseInt(document.getElementById('newHeight').value);
+
+            if (!width || !height) {
+                alert('Please enter valid dimensions');
+                return;
+            }
+
+            if (isPercentage) {
+                width = originalWidth * (width / 100);
+                height = originalHeight * (height / 100);
+            }
+
+            const canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+            
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(document.getElementById('preview'), 0, 0, width, height);
+            
+            const downloadLink = document.getElementById('downloadLink');
+            downloadLink.href = canvas.toDataURL('image/jpeg');
+            downloadLink.download = 'resized-image.jpg';
+            downloadLink.style.display = 'block';
+        }
+
+        // Length Converter
+        const lengthUnits = {
+            m: 1,
+            km: 1000,
+            in: 0.0254,
+            ft: 0.3048,
+            mi: 1609.34
+        };
+
+        function convertLength() {
+            const value = parseFloat(document.getElementById('lengthInput').value);
+            const fromUnit = document.getElementById('lengthFrom').value;
+            const toUnit = document.getElementById('lengthTo').value;
+            
+            if (isNaN(value)) {
+                document.getElementById('lengthResult').textContent = 'Please enter valid number';
+                return;
+            }
+            
+            const meters = value * lengthUnits[fromUnit];
+            const result = meters / lengthUnits[toUnit];
+            
+            document.getElementById('lengthResult').textContent = 
+                `${value} ${fromUnit} = ${result.toFixed(2)} ${toUnit}`;
+        }
+
+        // Weight Converter
+        const weightUnits = {
+            kg: 1,
+            g: 0.001,
+            lb: 0.453592,
+            oz: 0.0283495
+        };
+
+        function convertWeight() {
+            const value = parseFloat(document.getElementById('weightInput').value);
+            const fromUnit = document.getElementById('weightFrom').value;
+            const toUnit = document.getElementById('weightTo').value;
+            
+            if (isNaN(value)) {
+                document.getElementById('weightResult').textContent = 'Please enter valid number';
+                return;
+            }
+            
+            const kg = value * weightUnits[fromUnit];
+            const result = kg / weightUnits[toUnit];
+            
+            document.getElementById('weightResult').textContent = 
+                `${value} ${fromUnit} = ${result.toFixed(2)} ${toUnit}`;
+        }
+
+        // Smooth Scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -326,8 +525,6 @@
                 });
             });
         });
-
-        // Existing tool JavaScript remains same
     </script>
 </body>
 </html>
